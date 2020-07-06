@@ -1,5 +1,5 @@
 package service;
-/*
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -22,17 +22,31 @@ public class ExcelGenerator {
 	public HSSFWorkbook excelGenerate(Prograd prograd, List<Prograd> list) throws IOException {
 		try {
 
-
-			
-			// Type your code here
-			
-		
+              HSSFWorkbook ob=new HSSFWorkbook();
+			HSSFSheet sheet=ob.createSheet("ProGrad Details");
+			HSSFRow h=sheet.createRow(0);
+			h.createCell(0).setCellValue("ProGrad ID");
+			h.createCell(1).setCellValue("Name");
+			h.createCell(2).setCellValue("Rating");
+			h.createCell(3).setCellValue("Comments");
+			h.createCell(4).setCellValue("Recommendation");
+		int i=0;
+		for(Prograd p : list)
+		{
+			int j=i+1;
+			HSSFRow hr=sheet.createRow(j);
+			hr.createCell(0).setCellValue(p.getId());
+			hr.createCell(1).setCellValue(p.getName());
+			hr.createCell(2).setCellValue(p.getRate());
+			hr.createCell(3).setCellValue(p.getComment());
+			hr.createCell(4).setCellValue(p.getRecommend());
+			i++;
 			}
 			// Do not modify the lines given below
-			 out = new FileOutputStream(filename);
-			hwb.write(out);
+			 out = new FileOutputStream("C:\\Users\\Dagger\\labs\\javapro\\lab-excel-download\\chumma.xlsx");
+			ob.write(out);
 		
-			return hwb;
+			return ob;
 			}
 		catch (Exception e) {
 				e.printStackTrace();
@@ -44,4 +58,3 @@ public class ExcelGenerator {
 		
 	}
 }
-*/
